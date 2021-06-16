@@ -1,0 +1,29 @@
+{
+    "variables": {
+        "aws_access_key": "AKIA6QANFEY2OYZEVJ4D",
+        "aws_secret_key": "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"
+      },
+
+    "builders": [
+        {
+             "type": "amazon-ebs",
+             "ami_name": "lampfrompacker-{{isotime | clean_resource_name}}",
+             "ami_description": "This is lamp stack",
+             "region": "us-west-2",
+             "instance_type": "t2.micro",
+             "source_ami": "ami-090717c950a5c34d3",
+             "ssh_username": "ubuntu",
+             "communicator": "ssh"
+         
+        }
+        
+    ],
+    "description": "Create a lamp stack",
+    "provisioners": [
+       {
+        "type": "shell",
+        "script": "lamp.sh"
+       }
+    ]
+
+}
